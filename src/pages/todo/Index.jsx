@@ -1,17 +1,12 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import TodoItem from "../../components/todo/TodoItem";
 import { useNavigate } from "react-router-dom";
+import { TodoContext } from "../../contexts/TodoContext";
 
-const TodoList = ({ todoList, setTodoList }) => {
-  // useEffect를 이용해 할일 목록을 불러오시오.
-  // useState를 이용해 목록을 map으로 출력하시오.
+const TodoList = () => {
+  const { todoList } = useContext(TodoContext);
   const navigate = useNavigate();
-  const deleteTodo = id => {
-    // 할일 목록 한개 삭제하기
-    alert(`${id} 삭제했습니다.`);
-    const newList = todoList.filter(item => item.id !== id);
-    setTodoList(newList);
-  };
+
   const handleClickadd = () => {
     navigate(`/todo/add`);
   };
@@ -23,10 +18,10 @@ const TodoList = ({ todoList, setTodoList }) => {
     <div>
       <h1>TodoList</h1>
       <div>
-        {todoList.map((item, index) => {
+        {todoList.map(item => {
           return (
             <li key={item.id}>
-              <TodoItem item={item} deleteTodo={deleteTodo} />
+              <TodoItem item={item} />
             </li>
           );
         })}

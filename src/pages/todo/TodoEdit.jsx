@@ -1,6 +1,6 @@
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TODO_MOCK_DATA } from "../../constants/mockdata";
-import { useEffect, useState } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
 const initData = {
   id: 0,
   title: "",
@@ -11,12 +11,11 @@ const initData = {
   privacy: 0,
 };
 
-const TodoEdit = ({ todoList, setTodoList }) => {
+const TodoEdit = () => {
   //Params로 id 추출
   //useEffect에서 id를 이용해서 할 일 출력하시오.
   //useState 화면 리랜더링
-
-  const [todo, setTodo] = useState([]);
+  const { todoList, updateTodo } = useContext(TodoContext);
   const [formData, setFormData] = useState(initData);
 
   const { id } = useParams();
@@ -41,22 +40,9 @@ const TodoEdit = ({ todoList, setTodoList }) => {
     });
   };
 
-  const postTodo = () => {
-    console.log("formData", formData);
-    const newTodoData = todoList.map(item => {
-      if (formData.id === item.id) {
-        return formData;
-      } else {
-        return item;
-      }
-    });
-    console.log(newTodoData);
-    setTodoList(newTodoData);
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
-    postTodo();
+    updateTodo(formData);
     alert("내용이 수정되었습니다.");
     navigate(`/todo/detail?id=${id}`);
   };
@@ -89,7 +75,7 @@ const TodoEdit = ({ todoList, setTodoList }) => {
             id="title"
             type="text"
             value={formData.title}
-            onChange={() => handleChange()}
+            onChange={e => handleChange(e)}
           />
         </div>
         <div>

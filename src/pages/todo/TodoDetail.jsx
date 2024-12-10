@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { TodoContext } from "../../contexts/TodoContext";
 
-const TodoDetail = ({ todoList }) => {
+const TodoDetail = () => {
   // SearchParams 이용
-
+  const { todoList } = useContext(TodoContext);
   const [searchParams] = useSearchParams();
   const [todo, setTodo] = useState([]);
   const id = parseInt(searchParams.get("id"));
