@@ -4,10 +4,10 @@ export const THEME_COOKIE = "theme_cookie";
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("skyblue");
+  const [theme, setTheme] = useState("white");
   const [cookies, setCookie, removeCookie] = useCookies([THEME_COOKIE]);
   const handleChangeTheme = () => {
-    const nowTheme = theme === "skyblue" ? "pink" : "skyblue";
+    const nowTheme = theme === "white" ? "pink" : "white";
     setTheme(nowTheme);
     localStorage.setItem("theme", JSON.stringify(nowTheme));
     setCookie(THEME_COOKIE, nowTheme, {
@@ -27,7 +27,7 @@ export const ThemeProvider = ({ children }) => {
     if (flagCookie) {
       setTheme(flagCookie);
     } else {
-      setCookie(THEME_COOKIE, "skyblue", {
+      setCookie(THEME_COOKIE, "white", {
         path: "/",
         maxAge: 1 * 24 * 60 * 60,
       });

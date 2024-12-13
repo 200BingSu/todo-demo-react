@@ -16,6 +16,9 @@ const Header = () => {
       </Link>
       <Link to={"/"}>❓ABOUT</Link>
       <Link to={"/member"}>👍회원가입</Link>
+      <Link to={"/login"}>😎로그인</Link>
+      <Link to={"/schedule"}>📅달력</Link>
+      <Link to={"/range"}>📅일정</Link>
       <Link to={"/todo"}>📄TODO</Link>
       <button onClick={() => handleChangeTheme()}>테마변경</button>
       {login ? (

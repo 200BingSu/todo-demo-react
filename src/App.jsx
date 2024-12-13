@@ -10,6 +10,9 @@ import TodoDetail from "./pages/todo/TodoDetail";
 import TodoEdit from "./pages/todo/TodoEdit";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Join from "./pages/member/Join";
+import LoginPage from "./pages/member/LoginPage";
+import Schedule from "./pages/calendar/Schedule";
+import RangeSchedule from "./pages/calendar/RangeSchedule";
 
 function App() {
   return (
@@ -22,6 +25,11 @@ function App() {
               <Route path="/" element={<About />} />
               {/* 회원가입 */}
               <Route path="/member" element={<Join />} />
+              {/* 로그인 */}
+              <Route path="/login" element={<LoginPage />} />
+              {/* 캘린더 */}
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/range" element={<RangeSchedule />} />
               {/* todo 중첩 */}
               <Route path="/todo">
                 <Route index element={<TodoIndex />}></Route>
